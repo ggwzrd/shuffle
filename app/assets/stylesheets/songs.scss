@@ -1,3 +1,38 @@
 // Place all the styles related to the songs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.new-song{
+  display: none;
+  margin: 25% auto;
+  width: 100%;
+  height: auto;
+  position: relative;
+  background-color: transparent;
+  top:0;
+  padding: 0;
+  margin: 0;
+  z-index: 3000 !important;
+}
+.new-song .row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.new-song .btn.btn-danger{
+  position: absolute;
+  border-radius: 25px;
+  right: 0;
+  top: 0;
+}
+.new-song .box{
+  box-shadow: 2px 2px 15px rgba(163, 163, 163, 0.5);
+  z-index: inherit;
+}
+
+.new-song input{
+  padding: 10px;
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+}

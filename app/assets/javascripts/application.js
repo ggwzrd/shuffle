@@ -16,25 +16,26 @@
 //= require_tree .
 
 $(document).ready(function(){
-  $('.delete-song').click(deleteSong);
+  $('.delete-song').click(removeSong);
   $('#add-song').click(addSong);
+  $('#delete-all').click(deleteSongs);
 });
 
 // DELETE SINGLE SONG
-function deleteSong(event){
+function removeSong(event){
   event.preventDefault();
   $song = $(event.toElement);
   songId = $($song).attr('id');
-  removeSong(songId);
+  deleteSong(songId);
 }
 
 function cleanView(id){
-  $('#'+id).parent().parent().parent().remove();
+  $('#'+id).remove();
 }
-function removeSong(id){
+function deleteSong(id){
   $.ajax({
       type: "DELETE",
-      url: "/songs/" + id + ".json",
+      url: window.location.pathname+"/songs/" + id + ".json",
       contentType: "application/json",
       dataType: "json"
     }).done(function(data) {
@@ -52,9 +53,57 @@ function addSong(){
   event.preventDefault();
   $('.page-wrapper').fadeIn('slow');
   $('.new-song').fadeIn('slow');
-  createSong();
+  $('#abort-song-creation').click(function(){
+    $('.page-wrapper').fadeOut('slow');
+    $('.new-song').fadeOut('slow');
+  });
+
+  $('#create-new-song').click(checkValues);
 }
 
-function createSong(){
+function checkValues(){
+   $('#song-title').val() ? title = $('#song-title').val() : $('#song-title').css({"border-color": "red", "box-shadow": "1px 1px 2px red"});
+   $('#song-genre').val() ? genre = $('#song-genre').val() : $('#song-genre').css({"border-color": "red", "box-shadow": "1px 1px 2px red"});
 
+   if ((title) && (genre)){
+     createSong(title, genre);
+   }
+}
+function createSong(title, genre){
+  duration = Math.random(100000);
+  song = {title: title, duration: duration, genre: genre};
+  $.ajax({
+       type: "POST",
+       url: window.location.pathname+"/songs.json",
+       data: JSON.stringify({
+           song: song
+       }),
+       contentType: "application/json",
+       dataType: "json"
+   })
+   .success(function(data){
+     song = data;
+     title = $('<h1>').addClass("tag-title").text(song.title);
+     duration = $('<h1 id="duration">').text(song.duration);
+     playBtn = $('<a>').addClass('btn btn-primary').append($('<span>').addClass('glyphicon glyphicon-play-circle'));
+     deleteBtn = $('<a id="'+song.id+'">').addClass('btn btn-default pull-right delete-song').append($('<span>').addClass('glyphicon glyphicon-trash'));
+     genre =$('<a>').addClass('btn btn-default pull-left').text(song.genre);
+     songElement = $('<div>').addClass('col-md-4 text-center').append($('<div>').addClass('box').append($('<div>').addClass('box-content').append(title.after($('<hr />')), duration.after($('<br />')), playBtn.after('<br />').after('<hr />'), deleteBtn, genre)));
+     $('.row.songs').append(songElement);
+    //
+   })
+   .fail(function(data){
+     console.log(data);
+   });
+}
+
+// DELETE ALL
+
+function deleteSongs(event){
+  event.preventDefault();
+  $.each($('.song'), function(index, song){
+    $song = $(song);
+    songId = $song.attr('id');
+    deleteSong(songId);
+  });
 }
