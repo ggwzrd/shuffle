@@ -2,7 +2,7 @@
         <div class="content">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Artists</div>
+                    <div class="panel-heading">Artists <%= form_tag artists_path, {:method => :get} do %> <label>Order by:</label><%= select_tag("order_by", "<option>select an option</option><option>first_name</option><option>last_name</option><option>created_at</option>".html_safe, :onchange => "this.form.submit();" ) %> <% end %></div>
                     <div class="panel-body">
                         <% @artists.each do |artist| %>
                           <%= render partial: 'artist', locals: { artist: artist } %>

@@ -45,8 +45,8 @@
                     <a href="<%= artist_path(artist.id) %>"class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </a>
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">
-                    <h2><strong>43</strong></h2>
-                    <p><small>Snippets</small></p>
+                    <h2><strong><%= artist.songs.length %></strong></h2>
+                    <p><small>Songs</small></p>
                     <div class="btn-group dropup btn-block">
                       <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
                       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
