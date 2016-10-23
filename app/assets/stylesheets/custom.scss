@@ -1,0 +1,22 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+*{
+  box-sizing: border-box;
+  transition: 0.2s;
+}
+body{
+  font-family: 'Lato', sans-serif;
+}
+.container, .wrapper, .row{
+  width: 100% !important;
+}
+.content{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}

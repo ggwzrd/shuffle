@@ -1,0 +1,13 @@
+
+        <div class="content">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Artists</div>
+                    <div class="panel-body">
+                        <% @artists.each do |artist| %>
+                          <%= render partial: 'artist', locals: { artist: artist } %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
