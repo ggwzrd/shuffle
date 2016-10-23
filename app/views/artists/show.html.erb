@@ -14,14 +14,14 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <a href="#" class="btn btn-default pull-right">Delete All</a>
+    <div class="row songs">
+        <a href="#" class="btn btn-default pull-right" id="delete-all">Delete All</a>
         <a href="#" class="btn btn-default pull-left" id="add-song">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
-        <hr />
+        <hr/>
         <% @artist.songs.each do |song| %>
-        <div class="col-md-4 text-center">
+        <div class="col-md-4 text-center song" id="<%= song.id %>">
             <div class="box">
                 <div class="box-content">
                     <h1 class="tag-title"><%= song.title %></h1>
@@ -42,7 +42,5 @@
         </div>
         <% end %>
     </div>
-    <div class="new-song">
-        
-    </div>
-</div>
+  </div>
+ <%= render 'new_song' %>
