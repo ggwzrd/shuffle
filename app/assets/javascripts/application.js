@@ -13,5 +13,48 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  $('.delete-song').click(deleteSong);
+  $('#add-song').click(addSong);
+});
+
+// DELETE SINGLE SONG
+function deleteSong(event){
+  event.preventDefault();
+  $song = $(event.toElement);
+  songId = $($song).attr('id');
+  removeSong(songId);
+}
+
+function cleanView(id){
+  $('#'+id).parent().parent().parent().remove();
+}
+function removeSong(id){
+  $.ajax({
+      type: "DELETE",
+      url: "/songs/" + id + ".json",
+      contentType: "application/json",
+      dataType: "json"
+    }).done(function(data) {
+        console.log("done");
+        cleanView(id);
+
+      }).fail(function(data){
+        console.log("error");
+      });
+}
+
+// ADD SONG
+
+function addSong(){
+  event.preventDefault();
+  $('.page-wrapper').fadeIn('slow');
+  $('.new-song').fadeIn('slow');
+  createSong();
+}
+
+function createSong(){
+
+}

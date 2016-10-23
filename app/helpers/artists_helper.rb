@@ -1,7 +1,7 @@
 module ArtistsHelper
 
   def genre artist
-    !artist.songs.nil? ? artist.songs[0].genre : "undefined"
+    !artist.songs[0].nil? ? artist.songs[0].genre : "undefined"
   end
 
   def artist_photo artist

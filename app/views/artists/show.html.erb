@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-4 bg_blur ">
+            <a href="#" class="follow_btn hidden-xs">Follow</a>
+        </div>
+        <div class="col-md-8  col-xs-12">
+            <img src="<%= @artist.photo %>" class="img-thumbnail picture hidden-xs"/>
+            <img src="<%= @artist.photo %>" class="img-thumbnail visible-xs picture_mob"/>
+            <div class="header">
+                <h1><%= "#{@artist.first_name} #{@artist.last_name}" %>
+                </h1>
+                <h4><%= genre @artist %></h4>
+                <span><%= @artist.bio %></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a href="#" class="btn btn-default pull-right">Delete All</a>
+        <a href="#" class="btn btn-default pull-left" id="add-song">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <hr />
+        <% @artist.songs.each do |song| %>
+        <div class="col-md-4 text-center">
+            <div class="box">
+                <div class="box-content">
+                    <h1 class="tag-title"><%= song.title %></h1>
+                    <hr/>
+                    <h1 id="duration"><%= Time.at(song.duration/1000).strftime("%M:%S") %></h1>
+                    <br/>
+                    <a href="#" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                    </a>
+                    <br/>
+                    <hr/>
+                    <a href="#" class="btn btn-default pull-right delete-song" id="<%= song.id %>">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="#" class="btn btn-default pull-left"><%= song.genre %></a>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    <div class="new-song">
+        
+    </div>
+</div>
