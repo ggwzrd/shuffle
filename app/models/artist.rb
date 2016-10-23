@@ -1,3 +1,3 @@
 class Artist < ApplicationRecord
-  has_one :song
+  has_many :songs
 end
