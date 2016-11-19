@@ -39,11 +39,10 @@ function deleteSong(id){
       contentType: "application/json",
       dataType: "json"
     }).done(function(data) {
-        console.log("done");
         cleanView(id);
 
       }).fail(function(data){
-        console.log("error");
+        console.error("error");
       });
 }
 
@@ -66,12 +65,14 @@ function checkValues(){
    $('#song-genre').val() ? genre = $('#song-genre').val() : $('#song-genre').css({"border-color": "red", "box-shadow": "1px 1px 2px red"});
 
    if ((title) && (genre)){
+     $('#create-new-song').attr('disabled', 'disabled');
      createSong(title, genre);
    }
 }
 function createSong(title, genre){
-  duration = Math.random(100000);
+  duration = Math.floor(Math.random() * 400000) + 244900;
   song = {title: title, duration: duration, genre: genre};
+  
   $.ajax({
        type: "POST",
        url: window.location.pathname+"/songs.json",
@@ -88,8 +89,17 @@ function createSong(title, genre){
      playBtn = $('<a>').addClass('btn btn-primary').append($('<span>').addClass('glyphicon glyphicon-play-circle'));
      deleteBtn = $('<a id="'+song.id+'">').addClass('btn btn-default pull-right delete-song').append($('<span>').addClass('glyphicon glyphicon-trash'));
      genre =$('<a>').addClass('btn btn-default pull-left').text(song.genre);
-     songElement = $('<div>').addClass('col-md-4 text-center').append($('<div>').addClass('box').append($('<div>').addClass('box-content').append(title.after($('<hr />')), duration.after($('<br />')), playBtn.after('<br />').after('<hr />'), deleteBtn, genre)));
+     boxContent = $('<div>').addClass('box-content');
+     boxContent.append(title, $('<hr />'), duration, $('<br />'), playBtn, $('<br />'), $('<hr />'), deleteBtn, genre);
+     boxContainer = $('<div>').addClass('box').css('border-color', 'green');
+     boxContainer.append(boxContent);
+     songElement = $('<div>').addClass('col-md-4 text-center');
+     songElement.append(boxContainer);
      $('.row.songs').append(songElement);
+     setTimeout(function () {
+       $('.page-wrapper').fadeOut('slow');
+       $('.new-song').fadeOut('slow');
+     }, 500);
     //
    })
    .fail(function(data){
