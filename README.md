@@ -1,24 +1,20 @@
-# README
+# [Shuffle](http://shuffle.codaisseur.cloud/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<img src="http://i.imgur.com/RcLlx7W.png" width=600px />
 
-Things you may want to cover:
+## About
+Assignment of the week 4 of the intensive course in Codaisseur.
 
-* Ruby version
+## What I improved
 
-* System dependencies
+1. Save and get data with AJAX post, get and put and patch request
+2. Update UI dynamically with jQuery
 
-* Configuration
+## Get Started
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Install [RVM](https://rvm.io/rvm/install)
+2. Install [Rails](http://installrails.com/steps/choose_os)
+3. ``` rails db:drop ```
+4. ``` rails db:create ```
+5. ``` rails db:migrate ```
+6. ``` rails db:seed ```
