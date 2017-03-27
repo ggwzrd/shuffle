@@ -1,4 +1,4 @@
-# [Shuffle](http://shuffle.codaisseur.cloud/)
+# [Shuffle](https://shuffle-9.herokuapp.com/)
 
 <img src="http://i.imgur.com/RcLlx7W.png" width=600px />
 
